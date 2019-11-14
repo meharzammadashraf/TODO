@@ -1,0 +1,150 @@
+<doctype>
+<html>
+<head>
+ <style>
+
+
+.container{
+    overflow: hidden;
+}    
+.tab{
+    float: left;
+}
+.tab-2{
+    margin-left: 50px;
+}
+.tab-2 input{
+    display: block;
+    margin-bottom: 10px;
+}
+tr{transition: all.25s ease-in-out}
+tr:hover{background-color: rgb(0, 162, 255);
+cursor: pointer;
+}
+.one{
+    background-color: cadetblue;
+    border-radius: 20px;
+}
+.two{
+    background-color: lightblue;
+    border-radius: 20px;
+}
+.three{
+    background-color: sandybrown;
+    border-radius: 20px;
+}
+
+</style> 
+<link rel="stylesheet" href="bootstrap.min.css">
+<h1 ><marquee>Assignment</marquee></h1>
+</head>
+<body>
+    <div class = "container">
+    <div class="tab tab-1">
+    <table id="table" class=" table table-bordered">
+    <tr>
+            <th id="1name"> Name</th>
+            <th id="des"> Description</th>
+            <th id="pri">Price</th>
+            <th id="cata">Type</th>
+            <th id="action">Action</th>
+    </tr>
+    <tr>
+    <td>A1</td>
+    <td>B1</td>
+    <td>10</td>
+    <td>10</td>
+    <td><button class="one" onclick="addHtmlTableRow()">Add</button>
+        <button class="two" onclick="editHTMLTableSelectedRow()">Edit</button>
+        <button class="three" onclick="removeSelectedRow()">Remove</button></td>
+    </tr>
+        <tr>
+    <td>A1</td>
+    <td>10</td>
+    <td>10</td>
+    <td>B1</td>
+    <td><button class="one" onclick="addHtmlTableRow()">Add</button>
+        <button class="two" onclick="editHTMLTableSelectedRow()">Edit</button>
+        <button class="three" onclick="removeSelectedRow()">Remove</button></td>
+    </tr>
+        <tr>
+    <td>A1</td>
+    <td>B1</td>
+    <td>10</td>
+    <td>10</td>
+    <td><button class="one" onclick="addHtmlTableRow()">Add</button>
+        <button class="two" onclick="editHTMLTableSelectedRow()">Edit</button>
+        <button class="three" onclick="removeSelectedRow()">Remove</button></td>
+    </tr>
+    </table>
+    </div>
+    <div class="tab tab-2">
+    Name  :<input type="text" name="fname" id="name">
+    Description  :<input type="text" name="lname" id="lname">
+    Price :<input type="text" name="age" id="age">
+    Catagory :<input type="text" name="cata" id="ge"><br>
+    <button onclick="addHtmlTableRow()">Submit</button>
+    </div>
+    </div>
+    <script>
+        var rowIndex,
+        table = document.getElementById("table");
+    function addHtmlTableRow(){
+        var newRow = table.insertRow(table.length),
+        cell1 = newRow.insertCell(0),
+        cell2 = newRow.insertCell(1),
+        cell3 = newRow.insertCell(2),
+        cell4 = newRow.insertCell(3),
+        cell5 = newRow.insertCell(4),
+        name = document.getElementById("name").value,
+        lname = document.getElementById("lname").value,
+        age = document.getElementById("age").value,
+        ge = document.getElementById("ge").value;
+        action = document.getElementById("action").value;
+        cell1.innerHTML = name;
+        cell2.innerHTML = lname;
+        cell3.innerHTML = age;
+        cell4.innerHTML = ge;
+        cell5.innerHTML = action;
+        selectedRowToInput();
+    }
+    function selectedRowToInput(){
+        for(var i = 1; i< table.rows.length; i++){
+            table.rows[i].onclick = function(){
+            rIndex = this.rowIndex;
+            // console.log(rIndex);
+            document.getElementById("name").value = this.cells[0].innerHTML;
+            document.getElementById("lname").value = this.cells[1].innerHTML;
+            document.getElementById("age").value = this.cells[2].innerHTML;
+            document.getElementById("ge").value = this.cells[3].innerHTML;
+            document.getElementById("action").value = this.cells[4].innerHTML;
+        };
+        }
+    }
+    selectedRowToInput();
+
+
+    function editHTMLTableSelectedRow(){
+        var name =  document.getElementById("name").value,
+        lname =  document.getElementById("lname").value,
+        age =  document.getElementById("age").value,
+        ge =  document.getElementById("ge").value;
+        action =  document.getElementById("action").value;
+        table.rows[rIndex].cells[0].innerHTML = name;
+        table.rows[rIndex].cells[1].innerHTML = lname;
+        table.rows[rIndex].cells[2].innerHTML = age;
+        table.rows[rIndex].cells[3].innerHTML = ge;
+        table.rows[rIndex].cells[4].innerHTML = action;
+        // console.log(rIndex);
+    }
+    function removeSelectedRow(){
+        table.deleteRow(rIndex);
+        document.getElementById("name").value = " ";
+        document.getElementById("lname").value = " ";
+        document.getElementById("age").value = " ";
+        document.getElementById("ge").value = " ";
+        document.getElementById("action").value = " ";
+    }
+    </script>
+</body>
+</html>
